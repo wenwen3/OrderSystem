@@ -1,5 +1,6 @@
 package com.project.ordersystem;
 
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,7 +22,12 @@ public class MainActivity extends BaseActivity {
                 }else{
                     ConfigurationWrapper.getInstance().putLanguage(MainActivity.this,"zh");
                 }
-                MainActivity.this.recreate();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        OrderApplication.getInstance().restartApplication();
+                    }
+                },500);
             }
         });
     }
