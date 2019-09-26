@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">OrderSystem</string>
-    <string name="submit">提交</string>
+    <string name="input_password">请输入密码</string>
+    <string name="setting">程序设置</string>
+    <string name="shop_name">店铺名称 : </string>
+    <string name="server_IP">服务器IP : </string>
+    <string name="input_shop_name">请输入店铺名称</string>
+    <string name="input_server_IP">请输入服务器IP : </string>
+    <string name="print_detail_menu">打印详细点菜单</string>
+    <string name="Duplicate_Printing_of_Point_Menu">点菜单重复打印</string>
+    <string name="Current_Language_Chinese">当前语言:中文</string>
+    <string name="change_language">切换语言</string>
+    <string name="Current_Language_Uyghur">当前语言:维语</string>
+    <string name="save">保存</string>
 </resources>

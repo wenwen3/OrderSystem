@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="submit">维语:啊啊啊啊</string>
     <string name="app_name">维语:哈哈哈</string>
-
+    <string name="input_password">(维语)请输入密码</string>
+    <string name="setting">(维语)程序设置</string>
+    <string name="shop_name">(维语)店铺名称 : </string>
+    <string name="input_shop_name">(维语)请输入店铺名称</string>
+    <string name="server_IP">(维语)服务器IP : </string>
+    <string name="input_server_IP">(维语)请输入服务器IP : </string>
+    <string name="print_detail_menu">(维语)打印详细点菜单</string>
+    <string name="Duplicate_Printing_of_Point_Menu">(维语)点菜单重复打印</string>
+    <string name="save">(维语)保存</string>
+    <string name="Current_Language_Chinese">(维语)当前语言:中文</string>
+    <string name="change_language">(维语)切换语言</string>
+    <string name="Current_Language_Uyghur">(维语)当前语言:维语</string>
 </resources>

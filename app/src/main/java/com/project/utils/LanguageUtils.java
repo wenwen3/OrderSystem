@@ -5,31 +5,23 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.os.Handler;
 import android.support.annotation.NonNull;
+
+import com.project.ordersystem.OrderApplication;
 
 import java.util.Locale;
 
-public class ConfigurationWrapper {
-    public static ConfigurationWrapper instance;
+public class LanguageUtils {
+    public static LanguageUtils instance;
 
-    public static ConfigurationWrapper getInstance(){
+    public static LanguageUtils getInstance(){
         if(instance == null){
-            instance = new ConfigurationWrapper();
+            instance = new LanguageUtils();
         }
 
         return instance;
     }
-
-    public String language = "zh";
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
-    }
-
 
     public static Context wrapConfiguration(@NonNull final Context context, @NonNull final Configuration config) {
         return context.createConfigurationContext(config);
@@ -53,5 +45,20 @@ public class ConfigurationWrapper {
         SharedPreferences sharedPreferences = context.getSharedPreferences("language_order", Activity.MODE_PRIVATE);
         String language = sharedPreferences.getString("language", "zh");
         return language;
+    }
+
+    public void changeLanguage(Context context){
+        if(LanguageUtils.getInstance().getLanguage(context).equals("zh")){
+            LanguageUtils.getInstance().putLanguage(context,"ug");
+        }else{
+            LanguageUtils.getInstance().putLanguage(context,"zh");
+        }
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                OrderApplication.getInstance().restartApplication();
+            }
+        },500);
     }
 }
