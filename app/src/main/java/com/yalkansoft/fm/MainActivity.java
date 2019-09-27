@@ -1,8 +1,6 @@
-package com.project.ordersystem;
+package com.yalkansoft.fm;
 
 import android.app.AlertDialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
@@ -12,11 +10,11 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.project.base.BaseRxDataActivity;
-import com.project.utils.LanguageUtils;
-import com.project.utils.UiUtils;
+import com.project.ordersystem.R;
+import com.yalkansoft.base.BaseRxDataActivity;
+import com.yalkansoft.utils.LanguageUtils;
+import com.yalkansoft.utils.UiUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -51,7 +49,7 @@ public class MainActivity extends BaseRxDataActivity {
 
     @OnClick
     public void login(View view){
-        Toast.makeText(this, "登录", Toast.LENGTH_SHORT).show();
+        HallActivity.showActivity(this);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)

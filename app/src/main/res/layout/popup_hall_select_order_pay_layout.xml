@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:padding="20dp"
+    android:background="@drawable/bg_popup_window_all">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1号桌-顾客1"
+        android:textSize="14sp"
+        android:layout_gravity="center"
+        android:textColor="#FF6565"/>
+
+    <LinearLayout
+        android:id="@+id/order"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/icon_order"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ordering_meals"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:textSize="14sp"
+        android:textColor="#6FB43A"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/pay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/icon_pay"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bill_payment"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:textSize="14sp"
+            android:textColor="#6FB43A"/>
+    </LinearLayout>
+</LinearLayout>

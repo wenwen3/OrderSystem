@@ -1,4 +1,4 @@
-package com.project.utils;
+package com.yalkansoft.utils;
 
 import android.app.Activity;
 import android.content.Context;

@@ -9,6 +9,10 @@
     <string name="print_detail_menu">打印详细点菜单</string>
     <string name="Duplicate_Printing_of_Point_Menu">点菜单重复打印</string>
     <string name="Current_Language_Chinese">当前语言:中文</string>
+    <string name="ordering_meals">开台点餐</string>
+    <string name="bill_payment">买单结账</string>
+    <string name="order_or_pay">%1$d号桌 - 顾客%2$d</string>
+    <string name="hall">大厅</string>
     <string name="change_language">切换语言</string>
     <string name="Current_Language_Uyghur">当前语言:维语</string>
     <string name="save">保存</string>

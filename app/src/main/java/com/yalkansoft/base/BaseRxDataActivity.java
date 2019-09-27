@@ -1,4 +1,4 @@
-package com.project.base;
+package com.yalkansoft.base;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -17,9 +17,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.project.ordersystem.R;
-import com.project.utils.LanguageUtils;
-import com.project.utils.UiUtils;
-import com.project.widget.MyLinearLayout;
+import com.yalkansoft.utils.LanguageUtils;
+import com.yalkansoft.utils.UiUtils;
+import com.yalkansoft.widget.MyLinearLayout;
 
 import java.util.Locale;
 

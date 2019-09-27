@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/allLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:paddingTop="10dp"
+
+        android:orientation="vertical">
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+
+        android:layout_weight="1">
+    <GridView
+        android:id="@+id/gridView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingBottom="10dp"
+        android:layout_weight="1"
+        android:numColumns="3"
+        />
+    </android.support.v4.widget.SwipeRefreshLayout>
+    <LinearLayout
+        android:id="@+id/changeHall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:onClick="changeHall"
+        android:background="@drawable/bg_hall"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/hall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:text="@string/hall"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            />
+        <ImageView
+            android:id="@+id/hallImage"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/icon_top_cut"/>
+    </LinearLayout>
+    </LinearLayout>
+
+    <com.project.widget.InterceptFrameLayout
+        android:id="@+id/goneLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="#55000000"/>
+
+    <com.project.widget.SelectPersonToOrderLayout
+        android:id="@+id/selectLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="500dp"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
+</FrameLayout>

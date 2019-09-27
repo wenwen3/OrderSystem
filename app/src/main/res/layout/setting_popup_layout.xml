@@ -27,7 +27,7 @@
             android:padding="5dp"
             android:layout_margin="5dp"
             android:layout_gravity="right"
-            android:src="@drawable/shanchu"/>
+            android:src="@drawable/icon_shanchu"/>
     </FrameLayout>
 
     <LinearLayout

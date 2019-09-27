@@ -1,4 +1,4 @@
-package com.project.widget;
+package com.yalkansoft.widget;
 
 import android.content.Context;
 import android.graphics.Rect;
