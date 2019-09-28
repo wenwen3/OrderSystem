@@ -57,14 +57,14 @@
     </LinearLayout>
     </LinearLayout>
 
-    <com.project.widget.InterceptFrameLayout
+    <com.yalkansoft.widget.InterceptFrameLayout
         android:id="@+id/goneLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
         android:background="#55000000"/>
 
-    <com.project.widget.SelectPersonToOrderLayout
+    <com.yalkansoft.widget.SelectPersonToOrderLayout
         android:id="@+id/selectLayout"
         android:layout_width="wrap_content"
         android:layout_height="500dp"

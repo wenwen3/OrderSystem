@@ -7,6 +7,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
@@ -21,6 +22,7 @@ import com.allenliu.badgeview.BadgeFactory;
 import com.project.ordersystem.R;
 import com.yalkansoft.base.BaseRxDataActivity;
 import com.yalkansoft.bean.HallResultBean;
+import com.yalkansoft.utils.UiUtils;
 import com.yalkansoft.widget.SelectPersonToOrderLayout;
 import com.yalkansoft.widget.SpinerPopWindow;
 
@@ -162,6 +164,13 @@ public class HallActivity extends BaseRxDataActivity {
                 Toast.makeText(HallActivity.this, "买单咯~~~~", Toast.LENGTH_SHORT).show();
             }
         });
+        alertDialog.setView(rootView);
+        alertDialog.show();
+        final WindowManager.LayoutParams params = alertDialog.getWindow().getAttributes();
+        params.width = UiUtils.getInstance().getScreenWidth(this)*10/25;
+        params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        alertDialog.getWindow().setAttributes(params);
+        alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
     }
 
     @Override
