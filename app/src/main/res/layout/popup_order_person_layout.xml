@@ -30,10 +30,12 @@
             android:layout_height="20dp"
             android:src="@drawable/icon_cut_person"/>
         <EditText
+            android:id="@+id/personNumber"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="1"
+            android:inputType="number"
             android:layout_gravity="center"
             android:padding="5dp"
             android:gravity="center"

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">OrderSystem</string>
+    <string name="app_name">yalkansoft</string>
     <string name="input_password">请输入密码</string>
     <string name="setting">程序设置</string>
     <string name="shop_name">店铺名称 : </string>

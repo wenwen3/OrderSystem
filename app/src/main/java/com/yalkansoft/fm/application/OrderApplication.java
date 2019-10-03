@@ -21,6 +21,7 @@ public class OrderApplication extends Application {
 
     public void restartApplication() {
         Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
 
         System.exit(0);

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -152,7 +153,7 @@ public class HallActivity extends BaseRxDataActivity {
                 /**点餐*/
                 alertDialog.dismiss();
                 clickPersonCancel();
-                Toast.makeText(HallActivity.this, "点餐咯~~~~", Toast.LENGTH_SHORT).show();
+                showOrder();
             }
         });
         rootView.findViewById(R.id.pay).setOnClickListener(new View.OnClickListener() {
@@ -171,6 +172,50 @@ public class HallActivity extends BaseRxDataActivity {
         params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
         alertDialog.getWindow().setAttributes(params);
         alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+    }
+    AlertDialog orderDialog;
+    /**弹出选择   开台点餐or买单结账*/
+    private void showOrder() {
+        orderDialog = new AlertDialog.Builder(this).create();
+        View rootView = LayoutInflater.from(this).inflate(R.layout.popup_order_person_layout, null);
+        final EditText personNumber = rootView.findViewById(R.id.personNumber);
+        View cutPerson = rootView.findViewById(R.id.cutPerson);
+        cutPerson.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String personNumberString = personNumber.getText().toString().trim();
+                if(Integer.parseInt(personNumberString) <= 1){
+                    Toast.makeText(HallActivity.this, "至少一个人就餐", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                int parseInt = Integer.parseInt(personNumberString);
+                personNumber.setText((parseInt-1)+"");
+            }
+        });
+        View addPerson = rootView.findViewById(R.id.addPerson);
+        addPerson.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String personNumberString = personNumber.getText().toString().trim();
+                int parseInt = Integer.parseInt(personNumberString);
+                personNumber.setText((parseInt+1)+"");
+            }
+        });
+        rootView.findViewById(R.id.startOrder).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String personNumberString = personNumber.getText().toString().trim();
+                orderDialog.dismiss();
+                Toast.makeText(HallActivity.this, personNumberString+"人用餐，开始点菜", Toast.LENGTH_SHORT).show();
+            }
+        });
+        orderDialog.setView(rootView);
+        orderDialog.show();
+        final WindowManager.LayoutParams params = orderDialog.getWindow().getAttributes();
+        params.width = UiUtils.getInstance().getScreenWidth(this)*10/25;
+        params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        orderDialog.getWindow().setAttributes(params);
+        orderDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
     }
 
     @Override
