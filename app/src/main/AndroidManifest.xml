@@ -21,6 +21,16 @@
         </activity>
         <activity android:name="com.yalkansoft.fm.HallActivity"
             android:screenOrientation="portrait"/>
+
+
+        <meta-data
+            android:name="design_width_in_dp"
+            android:value="360" />
+        <meta-data
+            android:name="design_height_in_dp"
+            android:value="640" />
+
+
     </application>
 
 </manifest>
