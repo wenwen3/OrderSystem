@@ -36,7 +36,7 @@
         android:orientation="horizontal"
         android:clickable="true"
         android:onClick="changeHall"
-        android:background="@drawable/bg_hall"
+        android:background="@drawable/buttom"
         android:gravity="center">
 
         <TextView

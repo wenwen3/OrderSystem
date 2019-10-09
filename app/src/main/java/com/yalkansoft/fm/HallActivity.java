@@ -206,7 +206,7 @@ public class HallActivity extends BaseRxDataActivity {
             public void onClick(View v) {
                 String personNumberString = personNumber.getText().toString().trim();
                 orderDialog.dismiss();
-                Toast.makeText(HallActivity.this, personNumberString+"人用餐，开始点菜", Toast.LENGTH_SHORT).show();
+                OrderListActivity.showActivity(HallActivity.this);
             }
         });
         orderDialog.setView(rootView);

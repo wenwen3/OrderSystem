@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">维语:yalkansoft</string>
+    <string name="app_name">(维语)yalkansoft</string>
+    <string name="meal_name">(维语)饭菜名称</string>
+    <string name="price">(维语)单价</string>
+    <string name="number">(维语)数量</string>
     <string name="input_password">(维语)请输入密码</string>
     <string name="setting">(维语)程序设置</string>
     <string name="shop_name">(维语)店铺名称 : </string>
@@ -14,6 +17,7 @@
     <string name="order_or_pay">(维语)%1$d号桌 - 顾客%2$d</string>
     <string name="ordering_meals">(维语)开台点餐</string>
     <string name="bill_payment">(维语)买单结账</string>
+    <string name="hot_dishes">(维语)热菜类</string>
     <string name="Current_Language_Chinese">(维语)当前语言:中文</string>
     <string name="change_language">(维语)切换语言</string>
     <string name="Current_Language_Uyghur">(维语)当前语言:维语</string>
