@@ -12,17 +12,27 @@ public class OrderFood implements Serializable {
     public static final int TYPE_ZHUAFAN = 6;
     public static final int TYPE_HUOGUO = 7;
 
-    private int id;
+    private String id;
     private String name;
     private int price;
     private int number;
     private int type;
 
-    public int getId() {
+    private String remarks;
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

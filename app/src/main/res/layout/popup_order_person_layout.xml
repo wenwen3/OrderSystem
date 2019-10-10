@@ -11,7 +11,7 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="请输入用餐人数"
+        android:text="@string/please_enter_the_number_of_meals"
         android:textSize="14sp"
         android:layout_gravity="center"
         android:textColor="#FF6565"/>
@@ -55,6 +55,7 @@
             android:id="@+id/startOrder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:src="@drawable/icon_start_order"/>
 </LinearLayout>

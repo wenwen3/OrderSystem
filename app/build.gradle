@@ -37,4 +37,8 @@ dependencies {
     //角标
     implementation 'com.allenliu.badgeview:library:1.0.4'
     implementation 'com.github.bumptech.glide:compiler:4.4.0'
+
+    implementation 'com.github.HanHuoBin:BaseDialog:1.2.0'
+    //dialog
+    implementation 'com.github.f0ris.sweetalert:library:1.5.1'
 }

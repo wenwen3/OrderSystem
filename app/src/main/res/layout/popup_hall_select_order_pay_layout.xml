@@ -33,6 +33,7 @@
         android:text="@string/ordering_meals"
         android:layout_gravity="center"
         android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:textSize="14sp"
         android:textColor="#6FB43A"/>
     </LinearLayout>
@@ -53,6 +54,7 @@
             android:text="@string/bill_payment"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:textSize="14sp"
             android:textColor="#6FB43A"/>
     </LinearLayout>

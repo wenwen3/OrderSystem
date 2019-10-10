@@ -41,7 +41,7 @@ public class SelectPersonToOrderLayout extends FrameLayout {
                 }
             });
             TextView number = rootView.findViewById(R.id.number);
-            rootView.findViewById(R.id.personLayout).setOnClickListener(new OnClickListener() {
+            rootView.findViewById(R.id.personImage).setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(onLayoutClickListener != null ){
@@ -75,7 +75,7 @@ public class SelectPersonToOrderLayout extends FrameLayout {
                     }
                 }
             });
-            rootView.findViewById(R.id.personLayout).setOnClickListener(new OnClickListener() {
+            rootView.findViewById(R.id.personImage).setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(onLayoutClickListener != null ){

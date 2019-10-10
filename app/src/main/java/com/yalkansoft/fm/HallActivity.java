@@ -145,7 +145,7 @@ public class HallActivity extends BaseRxDataActivity {
         View rootView = LayoutInflater.from(this).inflate(R.layout.popup_hall_select_order_pay_layout, null);
         TextView title = rootView.findViewById(R.id.title);
         String string = getResources().getString(R.string.order_or_pay);
-        String format = String.format(string, currentTable, position);
+        final String format = String.format(string, currentTable, position);
         title.setText(format);
         rootView.findViewById(R.id.order).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,7 +153,7 @@ public class HallActivity extends BaseRxDataActivity {
                 /**点餐*/
                 alertDialog.dismiss();
                 clickPersonCancel();
-                showOrder();
+                showOrder(format);
             }
         });
         rootView.findViewById(R.id.pay).setOnClickListener(new View.OnClickListener() {
@@ -162,20 +162,21 @@ public class HallActivity extends BaseRxDataActivity {
                 /**买单*/
                 alertDialog.dismiss();
                 clickPersonCancel();
-                Toast.makeText(HallActivity.this, "买单咯~~~~", Toast.LENGTH_SHORT).show();
+                PayListActivity.showActivity(HallActivity.this,format);
             }
         });
         alertDialog.setView(rootView);
         alertDialog.show();
         final WindowManager.LayoutParams params = alertDialog.getWindow().getAttributes();
-        params.width = UiUtils.getInstance().getScreenWidth(this)*10/25;
+        params.width = UiUtils.getInstance().getScreenWidth(this)*10/17;
         params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
         alertDialog.getWindow().setAttributes(params);
         alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
     }
     AlertDialog orderDialog;
-    /**弹出选择   开台点餐or买单结账*/
-    private void showOrder() {
+    /**弹出选择   开台点餐or买单结账
+     * @param format*/
+    private void showOrder(final String format) {
         orderDialog = new AlertDialog.Builder(this).create();
         View rootView = LayoutInflater.from(this).inflate(R.layout.popup_order_person_layout, null);
         final EditText personNumber = rootView.findViewById(R.id.personNumber);
@@ -206,13 +207,13 @@ public class HallActivity extends BaseRxDataActivity {
             public void onClick(View v) {
                 String personNumberString = personNumber.getText().toString().trim();
                 orderDialog.dismiss();
-                OrderListActivity.showActivity(HallActivity.this);
+                OrderListActivity.showActivity(HallActivity.this,format);
             }
         });
         orderDialog.setView(rootView);
         orderDialog.show();
         final WindowManager.LayoutParams params = orderDialog.getWindow().getAttributes();
-        params.width = UiUtils.getInstance().getScreenWidth(this)*10/25;
+        params.width = UiUtils.getInstance().getScreenWidth(this)*10/17;
         params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
         orderDialog.getWindow().setAttributes(params);
         orderDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
@@ -229,12 +230,12 @@ public class HallActivity extends BaseRxDataActivity {
 
     /**初始化界面底部选择弹出的数据*/
     private void initDriver() {
-        mHallList.add("大厅");
-        mHallMaps.put("大厅",HallResultBean.TYPE_HALL);
-        mHallList.add("院子");
-        mHallMaps.put("院子",HallResultBean.TYPE_YARD);
-        mHallList.add("包厢");
-        mHallMaps.put("包厢",HallResultBean.TYPE_BALCONY);
+        mHallList.add(getResources().getString(R.string.hall));
+        mHallMaps.put(getResources().getString(R.string.hall),HallResultBean.TYPE_HALL);
+        mHallList.add(getResources().getString(R.string.yard));
+        mHallMaps.put(getResources().getString(R.string.yard),HallResultBean.TYPE_YARD);
+        mHallList.add(getResources().getString(R.string.balcony));
+        mHallMaps.put(getResources().getString(R.string.balcony),HallResultBean.TYPE_BALCONY);
     }
 
     private List<String> mHallList = new ArrayList<>();
@@ -281,6 +282,7 @@ public class HallActivity extends BaseRxDataActivity {
             @Override
             public void onDismiss() {
                 goneLayout.setVisibility(View.GONE);
+                hallImage.setImageResource(R.drawable.icon_top_cut);
             }
         });
         goneLayout.setVisibility(View.VISIBLE);
@@ -341,11 +343,11 @@ public class HallActivity extends BaseRxDataActivity {
                     holder.image.setVisibility(View.GONE);
                 }
                 if(item.getType() == HallResultBean.TYPE_HALL) {
-                    holder.title.setText("大厅 :"+(position+1) + "号桌");
+                    holder.title.setText(getResources().getString(R.string.hall)+" :"+(position+1) + "号桌");
                 }else if(item.getType() == HallResultBean.TYPE_YARD){
-                    holder.title.setText("院子 :"+(position+1) + "号桌");
+                    holder.title.setText(getResources().getString(R.string.yard)+" :"+(position+1) + "号桌");
                 }else if(item.getType() == HallResultBean.TYPE_BALCONY){
-                    holder.title.setText("包厢 :"+(position+1) + "号桌");
+                    holder.title.setText(getResources().getString(R.string.balcony)+" :"+(position+1) + "号桌");
                 }
                 if(item.getPersonNumber() != 0) {
                     BadgeFactory.createCircle(HallActivity.this).setBadgeCount(item.getPersonNumber()).bind(holder.badgeView);

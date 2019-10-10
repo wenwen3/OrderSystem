@@ -10,20 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#fff"
-        android:paddingTop="10dp"
-
         android:orientation="vertical">
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-
         android:layout_weight="1">
     <GridView
         android:id="@+id/gridView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:paddingBottom="10dp"
         android:layout_weight="1"
         android:numColumns="3"
         />
@@ -52,6 +48,7 @@
             android:id="@+id/hallImage"
             android:layout_width="17dp"
             android:layout_height="17dp"
+            android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
             android:src="@drawable/icon_top_cut"/>
     </LinearLayout>

@@ -2,6 +2,7 @@ package com.yalkansoft.fm;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,12 +23,17 @@ import com.yalkansoft.widget.SpinerPopWindow;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
+/**
+ * 点餐的菜单列表
+ * */
 public class OrderListActivity extends BaseRxDataActivity {
 
     @BindView(R.id.listView)
@@ -35,6 +41,12 @@ public class OrderListActivity extends BaseRxDataActivity {
 
     @BindView(R.id.dishes)
     TextView dishes;
+
+    @BindView(R.id.number)
+    TextView number;
+
+    @BindView(R.id.price)
+    TextView price;
 
     @BindView(R.id.hallImage)
     ImageView hallImage;
@@ -48,10 +60,12 @@ public class OrderListActivity extends BaseRxDataActivity {
     @BindView(R.id.goneLayout)
     View goneLayout;
 
+    private Map<String,OrderFood> mCheckMaps = new LinkedHashMap<>();
+
     private List<OrderFood> mDatas = new ArrayList<>();
 
-    private HashMap<Integer,OrderFood> mCheckMaps = new HashMap<>();
     private OrderListAdapter orderListAdapter;
+    private String customer;
 
     @Override
     protected void onActivityPrepared(View view) {
@@ -61,7 +75,7 @@ public class OrderListActivity extends BaseRxDataActivity {
         initAdapter();
 
         getData();
-
+        customer = getIntent().getStringExtra("customer");
         refreshLayout.setEnabled(false);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -69,10 +83,13 @@ public class OrderListActivity extends BaseRxDataActivity {
                 getData();
             }
         });
+        price.setSelected(true);
+        number.setSelected(true);
     }
 
-    public static void showActivity(Context context){
+    public static void showActivity(Context context, String customer){
         Intent intent = new Intent(context, OrderListActivity.class);
+        intent.putExtra("customer",customer);
         context.startActivity(intent);
     }
 
@@ -93,6 +110,7 @@ public class OrderListActivity extends BaseRxDataActivity {
             @Override
             public void onDismiss() {
                 goneLayout.setVisibility(View.GONE);
+                hallImage.setImageResource(R.drawable.icon_top_cut);
             }
         });
         goneLayout.setVisibility(View.VISIBLE);
@@ -103,27 +121,27 @@ public class OrderListActivity extends BaseRxDataActivity {
     private List<String> mTypeLists =new ArrayList<>();
     /**初始化下方选择菜类别的数据*/
     private void initDriver() {
-        mTypeLists.add("热菜类");
-        mTypeMaps.put("热菜类",OrderFood.TYPE_RECAI);
-        mTypeLists.add("凉菜类");
-        mTypeMaps.put("凉菜类",OrderFood.TYPE_LIANGCAI);
-        mTypeLists.add("烤肉类");
-        mTypeMaps.put("烤肉类",OrderFood.TYPE_KAOROU);
-        mTypeLists.add("主食类");
-        mTypeMaps.put("主食类",OrderFood.TYPE_ZHUSHI);
-        mTypeLists.add("饮料类");
-        mTypeMaps.put("饮料类",OrderFood.TYPE_YINGLIAO);
-        mTypeLists.add("抓饭类");
-        mTypeMaps.put("抓饭类",OrderFood.TYPE_ZHUAFAN);
-        mTypeLists.add("火锅类");
-        mTypeMaps.put("火锅类",OrderFood.TYPE_HUOGUO);
+        mTypeLists.add(getResources().getString(R.string.hot_dishes));
+        mTypeMaps.put(getResources().getString(R.string.hot_dishes),OrderFood.TYPE_RECAI);
+        mTypeLists.add(getResources().getString(R.string.herbs));
+        mTypeMaps.put(getResources().getString(R.string.herbs),OrderFood.TYPE_LIANGCAI);
+        mTypeLists.add(getResources().getString(R.string.barbecued_meat));
+        mTypeMaps.put(getResources().getString(R.string.barbecued_meat),OrderFood.TYPE_KAOROU);
+        mTypeLists.add(getResources().getString(R.string.staple_food));
+        mTypeMaps.put(getResources().getString(R.string.staple_food),OrderFood.TYPE_ZHUSHI);
+        mTypeLists.add(getResources().getString(R.string.beverages));
+        mTypeMaps.put(getResources().getString(R.string.beverages),OrderFood.TYPE_YINGLIAO);
+        mTypeLists.add(getResources().getString(R.string.catching_meals));
+        mTypeMaps.put(getResources().getString(R.string.catching_meals),OrderFood.TYPE_ZHUAFAN);
+        mTypeLists.add(getResources().getString(R.string.hot_pot));
+        mTypeMaps.put(getResources().getString(R.string.hot_pot),OrderFood.TYPE_HUOGUO);
     }
 
     private void getData() {
         mDatas.clear();
         for (int i = 0; i < 40; i++) {
             OrderFood orderFood = new OrderFood();
-            orderFood.setId(i+1);
+            orderFood.setId(mTypeMaps.get(dishes.getText().toString().trim())+""+(i+1));
             orderFood.setPrice(new Random().nextInt(100));
             orderFood.setName("第"+(i+1)+"道菜");
             orderFood.setType(mTypeMaps.get(dishes.getText().toString().trim()));
@@ -132,6 +150,23 @@ public class OrderListActivity extends BaseRxDataActivity {
         orderListAdapter.notifyDataSetChanged();
 
         refreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 11){
+            if(resultCode == 12){
+                if(data != null && data.getBooleanExtra("isFinish",false)){
+                    onBackPressed();
+                }
+            }
+        }
+    }
+
+    @OnClick(R.id.shopCart)
+    public void shopCart(View view){
+        OrderConfirmActivity.showActivity(this,new ArrayList<>(mCheckMaps.values()),customer);
     }
 
     private void initAdapter() {
@@ -190,42 +225,71 @@ public class OrderListActivity extends BaseRxDataActivity {
             if(item != null ) {
                 final ViewHolder holder = (ViewHolder) convertView.getTag();
                 if(item.getType() == OrderFood.TYPE_HUOGUO){
-                    holder.name.setText("火锅:"+item.getName());
+                    holder.name.setText(getResources().getString(R.string.hot_pot)+item.getName());
                 }else if(item.getType() == OrderFood.TYPE_KAOROU){
-                    holder.name.setText("烤肉:"+item.getName());
+                    holder.name.setText(getResources().getString(R.string.barbecued_meat)+item.getName());
                 }else if(item.getType() == OrderFood.TYPE_LIANGCAI){
-                    holder.name.setText("凉菜:"+item.getName());
+                    holder.name.setText(getResources().getString(R.string.herbs)+item.getName());
                 }else if(item.getType() == OrderFood.TYPE_RECAI){
-                    holder.name.setText("热菜:"+item.getName());
+                    holder.name.setText(getResources().getString(R.string.hot_dishes)+item.getName());
                 }else if(item.getType() == OrderFood.TYPE_YINGLIAO){
-                    holder.name.setText("饮料:"+item.getName());
+                    holder.name.setText(getResources().getString(R.string.beverages)+item.getName());
                 }else if(item.getType() == OrderFood.TYPE_ZHUAFAN){
-                    holder.name.setText("抓饭:"+item.getName());
+                    holder.name.setText(getResources().getString(R.string.catching_meals)+item.getName());
                 }else if(item.getType() == OrderFood.TYPE_ZHUSHI){
-                    holder.name.setText("主食:"+item.getName());
+                    holder.name.setText(getResources().getString(R.string.staple_food)+item.getName());
                 }
-                holder.number.setText(""+item.getNumber());
+                if(mCheckMaps.containsKey(item.getId())) {
+                    if(mCheckMaps.get(item.getId()).getNumber() != 0) {
+                        holder.number.setText("" + mCheckMaps.get(item.getId()).getNumber());
+                        holder.cutOrder.setVisibility(View.VISIBLE);
+                    }else{
+                        holder.number.setText("0");
+                        holder.cutOrder.setVisibility(View.INVISIBLE);
+                    }
+                }else{
+                    holder.number.setText("0");
+                    holder.cutOrder.setVisibility(View.INVISIBLE);
+                }
                 holder.price.setText(""+item.getPrice());
-                if(item.getNumber() > 0){
-                    holder.cutOrder.setVisibility(View.VISIBLE);
                     holder.cutOrder.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if(item.getNumber() == 0){
+                            if(!mCheckMaps.containsKey(item.getId())){
+                                return;
+                            }
+                            OrderFood orderFood = mCheckMaps.get(item.getId());
+                            if(orderFood == null ){
+                                return;
+                            }
+                            if(orderFood.getNumber() == 0){
                                 holder.cutOrder.setVisibility(View.INVISIBLE);
                                 return;
                             }
-                            item.setNumber(item.getNumber()-1);
+                            orderFood.setNumber(orderFood.getNumber()-1);
+                            mCheckMaps.remove(item.getId());
+                            if(orderFood.getNumber() != 0){
+                                mCheckMaps.put(item.getId(),orderFood);
+                            }
+
                             notifyDataSetChanged();
                         }
                     });
-                }else{
-                    holder.cutOrder.setVisibility(View.INVISIBLE);
-                }
                 holder.addOrder.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        item.setNumber(item.getNumber()+1);
+                        if(mCheckMaps.containsKey(item.getId())) {
+                            OrderFood orderFood = mCheckMaps.get(item.getId());
+                            if (orderFood == null) {
+                                return;
+                            }
+                            orderFood.setNumber(orderFood.getNumber() + 1);
+                            mCheckMaps.remove(item.getId());
+                            mCheckMaps.put(item.getId(), orderFood);
+                        }else{
+                            item.setNumber(1);
+                            mCheckMaps.put(item.getId(), item);
+                        }
                         notifyDataSetChanged();
                     }
                 });
