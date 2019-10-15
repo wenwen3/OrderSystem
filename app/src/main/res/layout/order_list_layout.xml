@@ -16,6 +16,7 @@
         android:background="@color/colorPrimary">
 
         <TextView
+            android:id="@+id/foodName"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -26,7 +27,7 @@
 
         <TextView
             android:id="@+id/price"
-            android:layout_width="40dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
@@ -41,7 +42,7 @@
 
         <TextView
             android:id="@+id/number"
-            android:layout_width="40dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="center"

@@ -156,7 +156,7 @@ public class HallActivity extends BaseRxDataActivity {
                 showOrder(format);
             }
         });
-        rootView.findViewById(R.id.pay).setOnClickListener(new View.OnClickListener() {
+        rootView.findViewById(R.id.payLayout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 /**买单*/

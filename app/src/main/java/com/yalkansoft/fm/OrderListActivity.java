@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +15,13 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.project.ordersystem.R;
 import com.yalkansoft.base.BaseRxDataActivity;
 import com.yalkansoft.bean.HallResultBean;
 import com.yalkansoft.bean.OrderFood;
+import com.yalkansoft.utils.LanguageUtils;
 import com.yalkansoft.widget.SpinerPopWindow;
 
 import java.util.ArrayList;
@@ -48,6 +51,9 @@ public class OrderListActivity extends BaseRxDataActivity {
     @BindView(R.id.price)
     TextView price;
 
+    @BindView(R.id.foodName)
+    TextView foodName;
+
     @BindView(R.id.hallImage)
     ImageView hallImage;
 
@@ -61,7 +67,7 @@ public class OrderListActivity extends BaseRxDataActivity {
     View goneLayout;
 
     private Map<String,OrderFood> mCheckMaps = new LinkedHashMap<>();
-
+    private String language;
     private List<OrderFood> mDatas = new ArrayList<>();
 
     private OrderListAdapter orderListAdapter;
@@ -85,6 +91,12 @@ public class OrderListActivity extends BaseRxDataActivity {
         });
         price.setSelected(true);
         number.setSelected(true);
+        language = LanguageUtils.getInstance().getLanguage(this);
+        if(language.equals("ug")) {
+            foodName.setGravity(Gravity.RIGHT);
+        }else{
+            foodName.setGravity(Gravity.LEFT);
+        }
     }
 
     public static void showActivity(Context context, String customer){
@@ -166,6 +178,10 @@ public class OrderListActivity extends BaseRxDataActivity {
 
     @OnClick(R.id.shopCart)
     public void shopCart(View view){
+        if(mCheckMaps.size() == 0){
+            Toast.makeText(this, getResources().getString(R.string.not_order), Toast.LENGTH_SHORT).show();
+            return;
+        }
         OrderConfirmActivity.showActivity(this,new ArrayList<>(mCheckMaps.values()),customer);
     }
 
@@ -238,6 +254,11 @@ public class OrderListActivity extends BaseRxDataActivity {
                     holder.name.setText(getResources().getString(R.string.catching_meals)+item.getName());
                 }else if(item.getType() == OrderFood.TYPE_ZHUSHI){
                     holder.name.setText(getResources().getString(R.string.staple_food)+item.getName());
+                }
+                if(language.equals("ug")) {
+                    holder.name.setGravity(Gravity.RIGHT);
+                }else{
+                    holder.name.setGravity(Gravity.LEFT);
                 }
                 if(mCheckMaps.containsKey(item.getId())) {
                     if(mCheckMaps.get(item.getId()).getNumber() != 0) {

@@ -25,6 +25,8 @@
     <string name="total">(维语)合计:¥    %1$s</string>
     <string name="back">(维语)返回</string>
     <string name="remarks">(维语)备注 : %1$s</string>
+    <string name="not_order">(维语)您还没有点餐哦~</string>
+    <string name="please_write_pay_money">(维语)请输入实付金额~</string>
     <string name="pay">(维语)结账</string>
     <string name="cash_payment">(维语)现金支付</string>
     <string name="weChat_payment">(维语)微信支付</string>

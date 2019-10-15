@@ -36,6 +36,7 @@ import com.yalkansoft.utils.UiUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 import butterknife.BindView;
@@ -43,6 +44,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
+/**
+ * 弹出的结账清单DialogActivity
+ * */
 public class PayListActivity extends  Activity {
 
     @BindView(R.id.titleText)
@@ -104,8 +108,13 @@ public class PayListActivity extends  Activity {
             @Override
             public void afterTextChanged(Editable s) {
                 String trim = payEdit.getText().toString().trim();
-                int pay = Integer.parseInt(trim);
+                if(TextUtils.isEmpty(trim)){
+                    giveEdit.setText("");
+                    return;
+                }
+                long pay = Long.parseLong(trim);
                 if(pay < total){
+                    giveEdit.setText("");
                     return;
                 }
                 giveEdit.setText("¥"+(pay - total));
@@ -129,6 +138,17 @@ public class PayListActivity extends  Activity {
         intent.putExtra("title",title);
         context.startActivity(intent);
     }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LanguageUtils.wrapLocale(newBase, getLocale(newBase)));
+    }
+
+    public Locale getLocale(Context context){
+        String language = LanguageUtils.getInstance().getLanguage(context);
+        return new Locale(language, Locale.CHINA.getCountry());
+    }
+
     private String title;
     private void getIntentData() {
         title = getIntent().getStringExtra("title");
@@ -155,7 +175,7 @@ public class PayListActivity extends  Activity {
     public void pay(View view){
         if(pay_type == 0) {
             if(TextUtils.isEmpty(payEdit.getText().toString().trim())){
-                Toast.makeText(this, "请输入实付金额!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getResources().getString(R.string.please_write_pay_money), Toast.LENGTH_SHORT).show();
                 return;
             }
             OrderOrPaySuccessActivity.showActivity(this, title, false, getResources().getString(R.string.cash_payment));
