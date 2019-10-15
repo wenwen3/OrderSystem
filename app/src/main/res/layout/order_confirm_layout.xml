@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:padding="20dp"
+        android:padding="15dp"
         android:orientation="vertical"
         android:layout_marginRight="20dp"
         android:elevation="20dp"
@@ -51,7 +51,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
+        android:padding="15dp"
         android:background="#F0F0F0"
         android:orientation="horizontal">
         <LinearLayout
@@ -59,6 +59,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:padding="10dp"
             android:background="@drawable/bg_blue"
             >
@@ -69,10 +71,15 @@
                 android:layout_gravity="center"
                 android:src="@drawable/arrow_down"/>
             <TextView
+                android:id="@+id/toBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#fff"
                 android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:text="@string/back"
@@ -83,7 +90,8 @@
             android:id="@+id/sureLayout"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
@@ -92,11 +100,16 @@
             >
 
             <TextView
+                android:id="@+id/sure"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:textColor="#fff"
                 android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
                 android:gravity="center"
                 android:textSize="18sp"
                 android:textStyle="bold"

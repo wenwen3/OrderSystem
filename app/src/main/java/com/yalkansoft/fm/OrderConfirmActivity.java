@@ -40,6 +40,12 @@ public class OrderConfirmActivity extends BaseRxDataActivity {
 
     @BindView(R.id.totalCount)
     TextView totalCount;
+
+    @BindView(R.id.sure)
+    TextView sure;
+
+    @BindView(R.id.toBack)
+    TextView toBack;
     private OrderConfirmListAdapter mAdapter;
 
     @Override
@@ -48,6 +54,8 @@ public class OrderConfirmActivity extends BaseRxDataActivity {
 
         initListAdapter();
 
+        toBack.setSelected(true);
+        sure.setSelected(true);
     }
 
     private void initListAdapter() {

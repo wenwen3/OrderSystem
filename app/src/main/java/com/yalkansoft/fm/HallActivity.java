@@ -112,7 +112,7 @@ public class HallActivity extends BaseRxDataActivity {
                 selectLayout.setVisibility(View.VISIBLE);
                 goneLayout.setVisibility(View.VISIBLE);
                 currentTable = position+1;
-                selectLayout.setNumber(mAdapter.getItem(position).getPersonNumber(), new SelectPersonToOrderLayout.OnLayoutClickListener() {
+                selectLayout.setNumber(HallActivity.this,mAdapter.getItem(position).getPersonNumber(), new SelectPersonToOrderLayout.OnLayoutClickListener() {
                     @Override
                     public void onClickCancel() {
                         clickPersonCancel();
@@ -254,7 +254,7 @@ public class HallActivity extends BaseRxDataActivity {
             if(i%4 == 2) {
                 hallResultBean.setStatus(HallResultBean.STATUS_NOT_ENOUGH);
             }
-            hallResultBean.setPersonNumber(new Random().nextInt(5));
+            hallResultBean.setPersonNumber(5);
             mDatas.add(hallResultBean);
         }
         mAdapter.notifyDataSetChanged();

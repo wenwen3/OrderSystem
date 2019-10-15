@@ -63,7 +63,7 @@
 
     <com.yalkansoft.widget.SelectPersonToOrderLayout
         android:id="@+id/selectLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="500dp"
         android:layout_gravity="center"
         android:visibility="gone"/>

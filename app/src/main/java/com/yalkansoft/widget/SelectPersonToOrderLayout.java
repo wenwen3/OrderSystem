@@ -1,5 +1,6 @@
 package com.yalkansoft.widget;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -10,10 +11,16 @@ import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.TextView;
+
+import com.bumptech.glide.util.Util;
 import com.project.ordersystem.R;
+import com.yalkansoft.fm.HallActivity;
+import com.yalkansoft.utils.UiUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.internal.Utils;
 
 public class SelectPersonToOrderLayout extends FrameLayout {
     public SelectPersonToOrderLayout( Context context) {
@@ -28,7 +35,7 @@ public class SelectPersonToOrderLayout extends FrameLayout {
         super(context, attrs, defStyleAttr);
     }
 
-    public void setNumber(int personNumber, final OnLayoutClickListener onLayoutClickListener){
+    public void setNumber(Activity activity, int personNumber, final OnLayoutClickListener onLayoutClickListener){
         if(personNumber == 1){
             View rootView = LayoutInflater.from(getContext()).inflate(R.layout.select_person_order_item_layout, this, false);
             rootView.findViewById(R.id.cancel).setOnClickListener(new OnClickListener() {
@@ -63,6 +70,10 @@ public class SelectPersonToOrderLayout extends FrameLayout {
                 }
             });
             TextView number = rootView.findViewById(R.id.number);
+            View layout = rootView.findViewById(R.id.layout);
+            ViewGroup.LayoutParams layoutParams = layout.getLayoutParams();
+            layoutParams.width = UiUtils.getInstance().getScreenWidth(activity)*10/14;
+            layout.setLayoutParams(layoutParams);
             GridView gridView = rootView.findViewById(R.id.gridView);
             gridView.setVisibility(VISIBLE);
             listAdapter listAdapter = new listAdapter();
