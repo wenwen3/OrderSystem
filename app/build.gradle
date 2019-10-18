@@ -10,6 +10,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
+        useLibrary'org.apache.http.legacy'
     }
     buildTypes {
         release {
@@ -20,7 +21,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation 'junit:junit:4.12'
@@ -37,8 +38,8 @@ dependencies {
     //角标
     implementation 'com.allenliu.badgeview:library:1.0.4'
     implementation 'com.github.bumptech.glide:compiler:4.4.0'
-
     implementation 'com.github.HanHuoBin:BaseDialog:1.2.0'
     //dialog
     implementation 'com.github.f0ris.sweetalert:library:1.5.1'
+    implementation files('libs/xUtils-2.6.14.jar')
 }

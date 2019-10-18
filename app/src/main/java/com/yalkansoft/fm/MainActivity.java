@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.project.ordersystem.R;
 import com.yalkansoft.base.BaseRxDataActivity;
 import com.yalkansoft.utils.LanguageUtils;
+import com.yalkansoft.utils.RequestUtils;
 import com.yalkansoft.utils.UiUtils;
 
 import butterknife.BindView;
@@ -40,6 +41,7 @@ public class MainActivity extends BaseRxDataActivity {
     @Override
     protected void onActivityPrepared(View view) {
         rootView = view;
+        RequestUtils.getInstance().init();
     }
 
     @Override

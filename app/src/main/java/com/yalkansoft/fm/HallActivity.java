@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +21,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.allenliu.badgeview.BadgeFactory;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.project.ordersystem.R;
 import com.yalkansoft.base.BaseRxDataActivity;
 import com.yalkansoft.bean.HallResultBean;
+import com.yalkansoft.utils.RequestUtils;
 import com.yalkansoft.utils.UiUtils;
 import com.yalkansoft.widget.SelectPersonToOrderLayout;
 import com.yalkansoft.widget.SpinerPopWindow;
@@ -153,7 +158,19 @@ public class HallActivity extends BaseRxDataActivity {
                 /**点餐*/
                 alertDialog.dismiss();
                 clickPersonCancel();
-                showOrder(format);
+//                showOrder(format);
+                HashMap<String, String> stringStringHashMap = new HashMap<>();
+                RequestUtils.getInstance().request(stringStringHashMap, "http://101.200.54.249:8733/kazgu/?singleWsdl", new RequestCallBack<String>() {
+                    @Override
+                    public void onSuccess(ResponseInfo<String> responseInfo) {
+                        Log.d("xgw","response:"+responseInfo.result);
+                    }
+
+                    @Override
+                    public void onFailure(HttpException e, String s) {
+                        Log.d("xgw","error:"+e.getMessage());
+                    }
+                });
             }
         });
         rootView.findViewById(R.id.payLayout).setOnClickListener(new View.OnClickListener() {
